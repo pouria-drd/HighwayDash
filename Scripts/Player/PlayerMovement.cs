@@ -13,13 +13,14 @@ namespace HighwayDash
         [Header("Lane Settings")]
         [SerializeField][Range(1f, 10f)] private int maxLanes = 3;
         [SerializeField][Range(1f, 10f)] private float laneDistance = 3f;
+        [SerializeField][Range(1f, 100f)] private float laneChangeSpeed = 10f;
         [SerializeField][Range(0.1f, 2f)] private float laneChangeThreshold = 1f;
 
         [Header("Movement Settings")]
-        [SerializeField][Range(1f, 100f)] private float forwardSpeed = 10f;
-        [SerializeField][Range(1f, 100f)] private float laneChangeSpeed = 10f;
-        [SerializeField][Range(1f, 100f)] private float jumpForce = 10f;
         [SerializeField][Range(1f, 100f)] private float gravity = 20f;
+        [SerializeField][Range(1f, 100f)] private float forwardSpeed = 10f;
+        [SerializeField][Range(1f, 100f)] private bool canJump = true;
+        [SerializeField][Range(1f, 100f)] private float jumpForce = 10f;
 
         private CharacterController cc;
         private Vector3 moveDirection = Vector3.zero;
@@ -107,7 +108,7 @@ namespace HighwayDash
         /// </summary>
         public void Jump()
         {
-            if (cc.isGrounded)
+            if (cc.isGrounded && canJump)
                 verticalVelocity = jumpForce;
         }
 

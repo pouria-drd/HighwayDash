@@ -6,12 +6,12 @@ namespace HighwayDash
     /// Reads input actions and forwards them to the PlayerMovement component.
     /// </summary>
     [RequireComponent(typeof(PlayerMovement))]
-    public class PlayerInputReader : MonoBehaviour
+    public class KeyboardReader : MonoBehaviour
     {
         #region Variables
 
-        private InputSystem_Actions controls;
         private PlayerMovement playerMovement;
+        private InputSystem_Actions inputActions;
 
         #endregion
 
@@ -21,19 +21,19 @@ namespace HighwayDash
 
         private void Awake()
         {
-            controls = new InputSystem_Actions();
+            inputActions = new InputSystem_Actions();
 
             // Bind input events to actions
-            controls.Player.Jump.performed += ctx => TriggerJump();
-            controls.Player.RightLane.performed += ctx => ChangeLane(1);
-            controls.Player.LeftLane.performed += ctx => ChangeLane(-1);
+            inputActions.Player.Jump.performed += ctx => TriggerJump();
+            inputActions.Player.RightLane.performed += ctx => ChangeLane(1);
+            inputActions.Player.LeftLane.performed += ctx => ChangeLane(-1);
         }
 
         private void Start() => playerMovement = GetComponent<PlayerMovement>();
 
-        private void OnEnable() => controls.Enable();
+        private void OnEnable() => inputActions.Enable();
 
-        private void OnDisable() => controls.Disable();
+        private void OnDisable() => inputActions.Disable();
 
         #endregion
 

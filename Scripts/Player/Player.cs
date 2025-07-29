@@ -2,7 +2,8 @@ using UnityEngine;
 
 namespace HighwayDash
 {
-    [RequireComponent(typeof(PlayerInputReader))]
+    [RequireComponent(typeof(KeyboardReader))]
+    [RequireComponent(typeof(SwipeReader))]
     public class Player : MonoBehaviour
     {
 

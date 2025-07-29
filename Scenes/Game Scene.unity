@@ -750,8 +750,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLanes: 3
   laneDistance: 2.5
-  laneChangeThreshold: 0.8
-  forwardSpeed: 2
+  laneChangeThreshold: 1
+  forwardSpeed: 10
   laneChangeSpeed: 5
   jumpForce: 10
   gravity: 20

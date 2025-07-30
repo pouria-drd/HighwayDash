@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace HighwayDash
@@ -9,6 +10,10 @@ namespace HighwayDash
 
         #region Variables
 
+        [Header("Ground Generator")]
+        // Action for border trigger
+        public static Action OnBorderEnter;
+        public string borderTag = "Border";
 
         #endregion
 
@@ -16,6 +21,11 @@ namespace HighwayDash
 
         #region Main Methods
 
+        private void OnTriggerEnter(Collider other)
+        {
+            // Trigger enter event if the collider has the border tag and if there are subscribers
+            if (other.CompareTag(borderTag)) OnBorderEnter?.Invoke();
+        }
 
         #endregion
 

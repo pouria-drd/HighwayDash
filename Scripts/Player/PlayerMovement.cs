@@ -10,17 +10,23 @@ namespace HighwayDash
     {
         #region Variables
 
-        [Header("Lane Settings")]
-        [SerializeField][Range(1f, 10f)] private int maxLanes = 3;
-        [SerializeField][Range(1f, 10f)] private float laneDistance = 3f;
-        [SerializeField][Range(1f, 100f)] private float laneChangeSpeed = 10f;
-        [SerializeField][Range(0.1f, 2f)] private float laneChangeThreshold = 1f;
 
         [Header("Movement Settings")]
-        [SerializeField][Range(1f, 100f)] private float gravity = 20f;
         [SerializeField][Range(1f, 100f)] private float forwardSpeed = 10f;
-        [SerializeField][Range(1f, 100f)] private bool canJump = true;
+
+        [Header("Gravity Settings")]
+        [SerializeField] private bool useGravity = true;
+        [SerializeField][Range(1f, 100f)] private float gravity = 20f;
+
+        [Header("Jump Settings")]
+        [SerializeField] private bool canJump = true;
         [SerializeField][Range(1f, 100f)] private float jumpForce = 10f;
+
+        [Header("Lane Settings")]
+        [SerializeField][Range(1f, 10f)] private int maxLanes = 3;
+        [SerializeField][Range(1f, 10f)] private float laneDistance = 2.5f;
+        [SerializeField][Range(1f, 100f)] private float laneChangeSpeed = 5f;
+        [SerializeField][Range(0.1f, 2f)] private float laneChangeThreshold = 1f;
 
         private CharacterController cc;
         private Vector3 moveDirection = Vector3.zero;
@@ -57,6 +63,8 @@ namespace HighwayDash
         /// </summary>
         private void ApplyGravity()
         {
+            if (!useGravity) return;
+
             if (!cc.isGrounded)
                 verticalVelocity -= gravity * Time.deltaTime;
             else if (verticalVelocity < 0)
